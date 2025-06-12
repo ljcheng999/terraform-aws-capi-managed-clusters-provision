@@ -7,7 +7,7 @@ region = "us-east-1"
 
 # assume_role_str = ""
 
-aws_account_id_allow_assume_self = "022985595394" # itself
+aws_account_id_allow_assume_self = "" # role for itself
 cm_oidc_providers = [
   {
     name = "capi-cm-poc",
