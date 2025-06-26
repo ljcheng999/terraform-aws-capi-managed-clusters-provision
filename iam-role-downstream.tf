@@ -23,7 +23,6 @@ resource "aws_iam_role" "capa_cluster_service_account_role" {
           }
         },
       },
-
       {
         Sid    = "AllowDmCoreCapiClustersToAssume",
         Action = "sts:AssumeRole",
