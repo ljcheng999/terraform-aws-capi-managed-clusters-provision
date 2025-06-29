@@ -3,7 +3,7 @@ resource "aws_iam_role" "capa_cluster_service_account_role" {
   name = "${var.aws_account_id_allow_assume_self}-capa-assume-role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [
+    Statement = concat([
       {
         Sid    = "AllowLocalCapaNodesAssume",
         Effect = "Allow",
@@ -34,18 +34,7 @@ resource "aws_iam_role" "capa_cluster_service_account_role" {
           ]
         },
       },
-      # {
-      #   Sid    = "AllowDmCoreCapiClustersForIRSA",
-      #   Action = "sts:AssumeRoleWithWebIdentity",
-      #   Effect = "Allow",
-      #   Principal = {
-      #     Federated = var.federated_arns_assume_role_from_dm_core
-      #   },
-      #   Condition = {
-      #     "StringEquals" : var.federated_statements_allow_dm_core_capi_clusters_for_irsa
-      #   }
-      # },
-    ]
+    ], var.custom_statement)
   })
 
   tags = merge(

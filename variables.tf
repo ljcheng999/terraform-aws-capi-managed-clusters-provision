@@ -29,3 +29,7 @@ variable "capa_nodes_karpenter_controller_policy_name" {
   type        = string
   default     = "capa-nodes-karpenter-controller-policy"
 }
+
+variable "custom_statement" {
+  default = []
+}
