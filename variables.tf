@@ -33,3 +33,8 @@ variable "capa_nodes_karpenter_controller_policy_name" {
 variable "custom_statement" {
   default = []
 }
+
+variable "default_capa_eks_pod_identity_sa" {
+  default = "capa-eks-sa"
+}
+

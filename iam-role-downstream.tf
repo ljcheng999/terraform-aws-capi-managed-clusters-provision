@@ -147,18 +147,27 @@ resource "aws_iam_policy" "capa_cluster_service_account_policy" {
         "Sid" : "CapaSaIam"
       },
       {
-        "Action" : [
+        Action = [
           "eks:*"
         ],
-        "Effect" : "Allow",
-        "Resource" : "*",
-        "Sid" : "CapaSaEks"
+        Effect   = "Allow",
+        Resource = "*",
+        Sid      = "CapaSaEks"
       },
       {
-        "Action" : "autoscaling:CreateOrUpdateTags",
-        "Effect" : "Allow",
-        "Resource" : "*",
-        "Sid" : "CapaSaTags"
+        Action   = "autoscaling:CreateOrUpdateTags",
+        Effect   = "Allow",
+        Resource = "*",
+        Sid      = "CapaSaTags"
+      },
+      {
+        Sid    = "AllowCapaUpstreamPodIdentityToAssumeTrustStatement"
+        Effect = "Allow",
+        Action = [
+          "sts:AssumeRole",
+          "sts:TagSession"
+        ],
+        Resource = "arn:aws:iam::${var.aws_account_id_upstream}:role/${var.default_capa_eks_pod_identity_sa}"
       }
     ]
   })
